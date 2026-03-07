@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Host Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --animate-marquee: marquee 90s linear infinite;
+  @keyframes marquee {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-50%, 0, 0); }
+  }
+}
+
+@utility ticker-text {
+  font-size: clamp(160px, 26vw, 440px);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-black text-white antialiased;
+}
+
+::selection {
+  @apply bg-white text-black;
+}

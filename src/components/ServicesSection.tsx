@@ -11,14 +11,14 @@ const services = [
   {
     title: "Design Systems & Ops",
     description: "Building the infrastructure that makes good design repeatable. Component libraries, token architectures, the boring-sounding stuff that quietly saves thousands of hours.",
-    tags: ["Component architecture", "Design tokens", "Governance", "Contribution models", "Team workflows", "Documentation"],
-    layout: "right"
+    tags: ["Component architecture", "Design tokens", "Variables setup", "Theming", "Team workflows", "Documentation"],
+    layout: "left"
   },
   {
     title: "Research & Strategy",
     description: "Decisions backed by evidence, not gut feelings. I synthesize qualitative and quantitative signals into structures teams can actually act on.",
-    tags: ["User research", "Synthesis", "Information architecture", "Product strategy", "Data-informed decisions", "Stakeholder alignment"],
-    layout: "right"
+    tags: ["User research", "Competitor analysis", "Information architecture", "Product strategy", "Data-informed decisions", "Stakeholder alignment"],
+    layout: "left"
   }
 ];
 
@@ -98,7 +98,7 @@ export const ServicesSection: React.FC = () => {
                 transition={{ duration: 0.8, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
                 className="w-full border-t border-zinc-900 pt-12"
               >
-                <h3 className="text-[clamp(32px,4.5vw,64px)] font-bold tracking-tighter mb-12">
+                <h3 className="text-[clamp(32px,4.5vw,76px)] font-light tracking-tighter mb-12">
                   {service.title}
                 </h3>
                 
@@ -106,13 +106,13 @@ export const ServicesSection: React.FC = () => {
                   {service.layout === 'left' ? (
                     <>
                       <div className="md:col-span-5">
-                        <p className="text-zinc-400 leading-relaxed" style={{ fontSize: 'clamp(15px, 1.2vw, 19px)' }}>
+                        <p className="text-zinc-400 leading-relaxed max-w-[520px]" style={{ fontSize: 'clamp(15px, 1.2vw, 19px)' }}>
                           {service.description}
                         </p>
                       </div>
-                      <div className="md:col-span-7 flex flex-wrap gap-2 md:justify-end content-start">
+                      <div className="md:col-span-7 flex flex-wrap gap-2 md:justify-start content-start">
                         {service.tags.map(tag => (
-                          <span key={tag} className="px-4 py-2 rounded-full border border-zinc-800 text-[10px] md:text-xs uppercase tracking-wider text-zinc-500 hover:border-violet-500 hover:text-white transition-colors cursor-default">
+                          <span key={tag} className="px-4 py-2 rounded-full border border-zinc-800 text-[clamp(11px,0.9vw,14px)] tracking-wider text-zinc-400 hover:border-violet-500 hover:text-white transition-colors cursor-default">
                             {tag}
                           </span>
                         ))}
@@ -122,7 +122,7 @@ export const ServicesSection: React.FC = () => {
                     <>
                       <div className="md:col-span-7 flex flex-wrap gap-2 content-start order-2 md:order-1">
                         {service.tags.map(tag => (
-                          <span key={tag} className="px-4 py-2 rounded-full border border-zinc-800 text-[10px] md:text-xs uppercase tracking-wider text-zinc-500 hover:border-violet-500 hover:text-white transition-colors cursor-default">
+                          <span key={tag} className="px-4 py-2 rounded-full border border-zinc-800 text-[clamp(11px,0.9vw,14px)] tracking-wider text-zinc-400 hover:border-violet-500 hover:text-white transition-colors cursor-default">
                             {tag}
                           </span>
                         ))}

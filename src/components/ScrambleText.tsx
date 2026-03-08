@@ -56,10 +56,11 @@ export const ScrambleText: React.FC<ScrambleTextProps> = ({ text, className }) =
 
   return (
     <span 
-      className={className}
+      className={`inline-grid ${className || ''}`}
       onMouseEnter={scramble}
     >
-      {displayText}
+      <span className="invisible [grid-area:1/1] select-none pointer-events-none">{text}</span>
+      <span className="[grid-area:1/1]">{displayText}</span>
     </span>
   );
 };

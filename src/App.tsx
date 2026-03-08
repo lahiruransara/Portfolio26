@@ -126,52 +126,54 @@ export default function App() {
       <WorkSection />
 
       {/* Footer */}
-      <footer id="contact" className="px-4 md:px-12 pt-12 md:pt-24 lg:pt-32 pb-4 md:pb-6 lg:pb-8">
-        <div className="mx-auto flex flex-col md:flex-row justify-between gap-16">
-          <div className="flex flex-col gap-4">
-            <span className="text-zinc-500 font-mono text-xs uppercase tracking-widest">Got an interesting idea?</span>
-            <h2 className="text-[clamp(36px,5.8vw,88px)] font-bold">LET'S TALK.</h2>
-          </div>
-          
-          <div className="flex flex-col sm:flex-row gap-16 sm:gap-24 font-mono">
-            <div className="flex flex-col gap-4">
-              <span className="text-zinc-500 text-[10px] uppercase tracking-widest">Social</span>
-              <a href="#" className="group flex items-center gap-1 hover:text-zinc-400 transition-colors text-xs">
-                <ScrambleText text="Instagram" />
-                <ArrowUpRight size={12} className="opacity-50 group-hover:opacity-100 transition-opacity" />
-              </a>
-              <a href="#" className="group flex items-center gap-1 hover:text-zinc-400 transition-colors text-xs">
-                <ScrambleText text="LinkedIn" />
-                <ArrowUpRight size={12} className="opacity-50 group-hover:opacity-100 transition-opacity" />
-              </a>
-              <a href="#" className="group flex items-center gap-1 hover:text-zinc-400 transition-colors text-xs">
-                <ScrambleText text="Dribbble" />
-                <ArrowUpRight size={12} className="opacity-50 group-hover:opacity-100 transition-opacity" />
-              </a>
-              <a href="#" className="group flex items-center gap-1 hover:text-zinc-400 transition-colors text-xs">
-                <ScrambleText text="Upwork" />
-                <ArrowUpRight size={12} className="opacity-50 group-hover:opacity-100 transition-opacity" />
-              </a>
-              <a href="#" className="group flex items-center gap-1 hover:text-zinc-400 transition-colors text-xs">
-                <ScrambleText text="Behance" />
-                <ArrowUpRight size={12} className="opacity-50 group-hover:opacity-100 transition-opacity" />
-              </a>
-            </div>
-            <div className="flex flex-col gap-4">
-              <span className="text-zinc-500 text-[10px] uppercase tracking-widest">Contact</span>
-              <a href="mailto:lahiruransara@icloud.com" className="hover:text-zinc-400 transition-colors text-xs whitespace-nowrap">
-                <ScrambleText text="lahiruransara@icloud.com" />
-              </a>
-              <a href="tel:+19866009246" className="hover:text-zinc-400 transition-colors text-xs">
-                <ScrambleText text="+1 986 600 9246" />
-              </a>
-            </div>
+      <footer id="contact" className="min-h-screen w-full bg-black text-white px-4 md:px-12 pt-12 xl:pt-24 pb-4 md:pb-12 flex flex-col relative">
+        {/* Top Label - Sticky */}
+        <div 
+          className="w-full sticky z-40 mix-blend-difference left-0"
+          style={{ 
+            top: 'calc(var(--sticky-top, 40px) + clamp(10px, 1.5vw, 16px))',
+            height: '0px'
+          }}
+        >
+          <style dangerouslySetInnerHTML={{ __html: `
+            :root { --sticky-top: 40px; }
+            @media (min-width: 768px) {
+              :root { --sticky-top: 48px; }
+            }
+          `}} />
+          <div className="flex items-center gap-4">
+            <div className="w-8 h-[1px] bg-violet-500" />
+            <span className="text-violet-500 font-mono uppercase tracking-[0.2em] text-[clamp(10px,0.8vw,12px)]">Contact</span>
           </div>
         </div>
-        
-        <div className="mx-auto mt-32 pt-8 border-t border-zinc-900 flex flex-col sm:flex-row justify-between items-start sm:items-center sm:gap-0 text-xs text-zinc-500 font-mono uppercase tracking-tighter">
-          <span>© 2026 LAHIRU RANSARA</span>
-          <span>Designed with lots of ❤ and built with <a href="https://aistudio.google.com/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors"><ScrambleText text="Google AI Studio" className="underline" /></a></span>
+
+        {/* Main Content */}
+        <div className="flex flex-col justify-end flex-1 mt-[clamp(100px,15vh,160px)]">
+          <div className="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-12 w-full">
+            <div className="flex flex-col gap-6 xl:gap-12 w-full">
+              <span className="text-zinc-400 font-mono text-sm xl:text-xl uppercase tracking-widest">Got an interesting idea?</span>
+              <h2 className="text-[clamp(72px,18vw,240px)] font-bold leading-[0.65] tracking-normal w-full">
+                Let's <br /> connect.
+              </h2>
+            </div>
+
+            <div className="flex flex-col items-start xl:items-end gap-6 font-mono text-[10px] xl:text-xs uppercase tracking-[0.2em] text-white text-left xl:text-right">
+              <div className="flex flex-col items-start xl:items-end gap-3">
+                <a href="https://www.linkedin.com/in/lahiruransara/" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-400 transition-colors">
+                  <ScrambleText text="LinkedIn" />
+                </a>
+                <a href="https://www.behance.net/lahiruransara" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-400 transition-colors">
+                  <ScrambleText text="Behance" />
+                </a>
+                <a href="https://www.upwork.com/freelancers/~019866009246" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-400 transition-colors">
+                  <ScrambleText text="Upwork" />
+                </a>
+              </div>
+              <a href="mailto:lahiruransara@icloud.com" className="hover:text-zinc-400 transition-colors mt-4">
+                <ScrambleText text="lahiruransara@icloud.com" />
+              </a>
+            </div>
+          </div>
         </div>
       </footer>
     </main>

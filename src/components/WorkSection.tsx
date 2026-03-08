@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform, useInView } from 'motion/react';
+import { motion, useScroll, useTransform, useInView, useSpring } from 'motion/react';
 import { useRef, useState, useEffect, useCallback } from 'react';
 import { useLenis } from 'lenis/react';
 import { ArrowUpRight } from 'lucide-react';
@@ -81,7 +81,21 @@ const projects: Project[] = [
 
 export function WorkSection() {
   const [activeProject, setActiveProject] = useState(projects[0].id);
+  const [isHovering, setIsHovering] = useState(false);
   const lenis = useLenis();
+
+  const mouseX = useSpring(0, { stiffness: 150, damping: 20 });
+  const mouseY = useSpring(0, { stiffness: 150, damping: 20 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, [mouseX, mouseY]);
 
   const handleProjectScroll = useCallback((projectId: string) => {
     if (lenis) {
@@ -94,6 +108,25 @@ export function WorkSection() {
 
   return (
     <section id="work" className="relative text-white pt-8 pb-16 md:pt-12 md:pb-[clamp(80px,8vw,140px)]">
+      {/* Custom Cursor */}
+      <motion.div
+        className="fixed top-0 left-0 w-24 h-24 rounded-full border border-white/20 bg-black/40 backdrop-blur-md pointer-events-none z-[9999] flex items-center justify-center overflow-hidden"
+        style={{
+          x: mouseX,
+          y: mouseY,
+          translateX: '-50%',
+          translateY: '-50%',
+          scale: isHovering ? 1 : 0,
+          opacity: isHovering ? 1 : 0,
+        }}
+        transition={{
+          scale: { type: 'spring', stiffness: 300, damping: 25 },
+          opacity: { duration: 0.2 }
+        }}
+      >
+        <span className="text-white font-mono text-xs tracking-widest font-bold">VIEW</span>
+      </motion.div>
+
       {/* Sticky Header */}
       <div 
         className="sticky z-50 w-full"
@@ -177,6 +210,7 @@ export function WorkSection() {
             project={project} 
             index={index} 
             onInView={() => setActiveProject(project.id)}
+            onHoverChange={setIsHovering}
           />
         ))}
       </div>
@@ -188,10 +222,11 @@ interface ProjectCardProps {
   project: Project;
   index: number;
   onInView: () => void;
-  key?: any;
+  onHoverChange: (isHovering: boolean) => void;
+  key?: string;
 }
 
-function ProjectCard({ project, index, onInView }: ProjectCardProps) {
+function ProjectCard({ project, index, onInView, onHoverChange }: ProjectCardProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(containerRef, { amount: 0.5 });
 
@@ -206,9 +241,11 @@ function ProjectCard({ project, index, onInView }: ProjectCardProps) {
       id={project.id}
       ref={containerRef}
       className="relative w-full min-h-[calc(150vh-130px)]"
+      onMouseEnter={() => onHoverChange(true)}
+      onMouseLeave={() => onHoverChange(false)}
     >
       <div 
-        className="sticky mx-auto flex flex-col md:flex-row items-stretch overflow-hidden bg-[rgb(10, 10, 10)] border border-zinc-800 rounded-[20px] shadow-2xl"
+        className="sticky mx-auto flex flex-col md:flex-row items-stretch overflow-hidden bg-[rgb(10, 10, 10)] border border-zinc-800 rounded-[20px] shadow-2xl cursor-none"
         style={{
           top: 'calc(var(--sticky-top, 48px) + 80px + var(--card-offset, 24px))',
           height: 'calc(100vh - (var(--sticky-top, 48px) + 80px + var(--card-offset, 24px)) - var(--h-gap, 32px))',
@@ -273,7 +310,7 @@ function ProjectCard({ project, index, onInView }: ProjectCardProps) {
             {project.tags.map((tag) => (
               <span 
                 key={tag}
-                className="px-4 py-2 rounded-full border border-zinc-800 text-[clamp(11px,0.9vw,14px)] tracking-wider text-zinc-400 hover:border-violet-500 hover:text-white transition-colors cursor-default"
+                className="px-4 py-2 rounded-full border border-zinc-800 text-[clamp(11px,0.9vw,14px)] tracking-wider text-zinc-400 hover:border-violet-500 hover:text-white transition-colors cursor-none"
               >
                 {tag}
               </span>
@@ -284,3 +321,4 @@ function ProjectCard({ project, index, onInView }: ProjectCardProps) {
     </div>
   );
 }
+

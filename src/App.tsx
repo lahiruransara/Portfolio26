@@ -6,7 +6,7 @@ import { ServicesSection } from './components/ServicesSection';
 import { WorkSection } from './components/WorkSection';
 import { ScrambleText } from './components/ScrambleText';
 import { motion, AnimatePresence } from 'motion/react';
-import { Github, Twitter, Mail, ArrowUpRight, Menu, X } from 'lucide-react';
+import { ArrowUpRight, Menu, X } from 'lucide-react';
 import portrait from './assets/portrait.png';
 
 export default function App() {

@@ -7,6 +7,7 @@ import { WorkSection } from './components/WorkSection';
 import { ScrambleText } from './components/ScrambleText';
 import { motion, AnimatePresence } from 'motion/react';
 import { Github, Twitter, Mail, ArrowUpRight, Menu, X } from 'lucide-react';
+import portrait from './assets/portrait.png';
 
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -113,7 +114,7 @@ export default function App() {
 
       {/* Hero Section */}
       <section className="h-screen">
-        <AsciiHero imagePath="/assets/portrait.png" />
+        <AsciiHero imagePath={portrait} />
       </section>
 
       {/* Welcome Section */}

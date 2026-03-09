@@ -4,6 +4,8 @@ import { AsciiHero } from './components/AsciiHero';
 import { WelcomeSection } from './components/WelcomeSection';
 import { ServicesSection } from './components/ServicesSection';
 import { WorkSection } from './components/WorkSection';
+import { AboutSection } from './components/AboutSection';
+import { SkillsSection } from './components/SkillsSection';
 import { ScrambleText } from './components/ScrambleText';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowUpRight, Menu, X } from 'lucide-react';
@@ -27,7 +29,7 @@ export default function App() {
 
   const navItems = [
     { label: 'Work', href: '#work' },
-    { label: 'About', href: '#about' },
+    { label: 'About', href: '#about-me' },
     { label: 'Contact', href: '#contact' },
   ];
 
@@ -125,6 +127,8 @@ export default function App() {
 
       {/* Work Section */}
       <WorkSection />
+      <AboutSection />
+      <SkillsSection />
 
       {/* Footer */}
       <footer id="contact" className="min-h-screen w-full bg-black text-white px-4 md:px-12 pt-12 xl:pt-24 pb-4 md:pb-12 flex flex-col relative">
@@ -160,14 +164,17 @@ export default function App() {
 
             <div className="flex flex-col items-start xl:items-end gap-6 font-mono text-[10px] xl:text-xs uppercase tracking-[0.2em] text-white text-left xl:text-right">
               <div className="flex flex-col items-start xl:items-end gap-3">
-                <a href="https://www.linkedin.com/in/lahiruransara/" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-400 transition-colors">
+                <a href="https://www.linkedin.com/in/lahiruransara/" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-400 transition-colors flex items-center gap-1">
                   <ScrambleText text="LinkedIn" />
+                  <ArrowUpRight size={12} />
                 </a>
-                <a href="https://www.behance.net/lahiruransara" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-400 transition-colors">
+                <a href="https://www.behance.net/lahiruransara" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-400 transition-colors flex items-center gap-1">
                   <ScrambleText text="Behance" />
+                  <ArrowUpRight size={12} />
                 </a>
-                <a href="https://www.upwork.com/freelancers/~019866009246" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-400 transition-colors">
+                <a href="https://www.upwork.com/freelancers/~01497ffb9358027100" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-400 transition-colors flex items-center gap-1">
                   <ScrambleText text="Upwork" />
+                  <ArrowUpRight size={12} />
                 </a>
               </div>
               <a href="mailto:lahiruransara@icloud.com" className="hover:text-zinc-400 transition-colors mt-4">

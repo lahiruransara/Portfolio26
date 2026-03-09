@@ -129,9 +129,10 @@ export function WorkSection() {
 
       {/* Sticky Header */}
       <div 
-        className="sticky z-50 w-full"
+        className="sticky z-40 w-full mix-blend-difference"
         style={{ 
-          top: 'calc(var(--sticky-top, 40px) + clamp(10px, 1.5vw, 16px))'
+          top: 'calc(var(--sticky-top, 40px) + clamp(10px, 1.5vw, 16px))',
+          height: '0px'
         }}
       >
         <style dangerouslySetInnerHTML={{ __html: `
@@ -139,16 +140,20 @@ export function WorkSection() {
             --sticky-top: 40px; 
             --card-offset: 16px; 
             --h-gap: 16px;
+            --card-height: auto;
+            --card-min-height: 0px;
           }
           @media (min-width: 768px) {
             :root { 
               --sticky-top: 48px; 
               --card-offset: 24px; 
               --h-gap: 32px;
+              --card-height: calc(100vh - (var(--sticky-top, 48px) + 80px + var(--card-offset, 24px)) - var(--h-gap, 32px));
+              --card-min-height: 450px;
             }
           }
         `}} />
-        <div className="px-4 py-4 md:px-12">
+        <div className="px-4 md:px-12">
           {/* Desktop Layout (lg+) */}
           <div className="hidden lg:grid grid-cols-3 items-center w-full">
             <div className="flex items-center gap-4">
@@ -203,7 +208,7 @@ export function WorkSection() {
       </div>
 
       {/* Projects List */}
-      <div className="w-full flex flex-col gap-6">
+      <div className="w-full flex flex-col gap-6 mt-[clamp(64px,12vw,100px)] md:mt-[clamp(56px,7vw,120px)]">
         {projects.map((project, index) => (
           <ProjectCard 
             key={project.id} 
@@ -248,8 +253,8 @@ function ProjectCard({ project, index, onInView, onHoverChange }: ProjectCardPro
         className="sticky mx-auto flex flex-col md:flex-row items-stretch overflow-hidden bg-[rgb(10, 10, 10)] border border-zinc-800 rounded-[20px] shadow-2xl cursor-none"
         style={{
           top: 'calc(var(--sticky-top, 48px) + 80px + var(--card-offset, 24px))',
-          height: 'calc(100vh - (var(--sticky-top, 48px) + 80px + var(--card-offset, 24px)) - var(--h-gap, 32px))',
-          minHeight: 'fit-content',
+          height: 'var(--card-height)',
+          minHeight: 'var(--card-min-height)',
           width: 'calc(100% - (var(--h-gap, 32px) * 2))'
         }}
       >
@@ -259,7 +264,7 @@ function ProjectCard({ project, index, onInView, onHoverChange }: ProjectCardPro
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="w-full md:w-1/2 h-[40%] md:h-full relative overflow-hidden group shrink-0"
+          className="w-full md:w-1/2 h-[250px] md:h-auto md:min-h-[400px] relative overflow-hidden group shrink-0"
         >
           <img 
             src={project.image} 
@@ -276,7 +281,7 @@ function ProjectCard({ project, index, onInView, onHoverChange }: ProjectCardPro
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-          className="w-full md:w-1/2 p-6 md:p-12 lg:p-16 flex flex-col justify-center"
+          className="w-full md:w-1/2 p-6 md:p-10 lg:p-16 flex flex-col justify-start md:justify-center"
         >
           <div className="flex flex-col gap-2 mb-6">
             <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-500">
